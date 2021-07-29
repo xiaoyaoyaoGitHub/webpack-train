@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    (function (lists) {
+        function require(file){
+            const exports = {};
+            (new Function('exports',lists[file]))(exports)
+            return exports
+        }
+
+        const add = require('./src/a.js').default;
+        console.log(add);
+        const minus = require('./src/b.js').default;
+        console.log(add(4,3))
+        console.log(minus(4,3))
+
+    })({
+        './src/a.js': "exports.default = function add(a,b){return a + b}",
+        './src/b.js': "exports.default = function minus(a,b){return a - b}"
+    })
+
+
+    // 单个文件
+    // function require(file) {
+    //     const exports = {};
+    //     (function (exports) {
+    //         const code = 'exports.default = function add(a,b){return a + b}';
+    //         // eval(code)
+    //         (new Function('exports',code))(exports)
+
+    //     })(exports)
+    //     return exports
+    // }
+    // // console.log(require('./src/a.js'));
+    // const add = require('./src/a.js').default;
+    // console.log(add(1,3));
+</script>
+
+</html>
