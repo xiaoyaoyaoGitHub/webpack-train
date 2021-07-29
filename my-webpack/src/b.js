@@ -1,3 +1,1 @@
-exports.default = function minus(a, b){
-    return a - b
-}
+export default (a, b) => a + b
